@@ -9,7 +9,7 @@ class SqliteClimaDao(ClimaDao):
     def adicionar(self, clima):
         conexao = dao.SqliteDAOFactory.criar_conexao()
         cursor = conexao.cursor()
-        query = 'INSERT INTO Clima VALUES (null,?,?,?,?)'
+        query = 'INSERT INTO Clima VALUES (null,?,?,?,?,?)'
         registro = (clima.temperatura, clima.umidade, clima.condicao_tempo, clima.velocidade_vento_km, clima.data_hora)
 
         try:
