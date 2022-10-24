@@ -19,10 +19,10 @@ def consultar_dados_climaticos() -> Clima:
     requisicao = requests.get(URL_BASE)
     dados = requisicao.json()['results']
 
-    temperatura = complex(dados['temp'])
-    umidade = complex(dados['humidity'])
+    temperatura = float(dados['temp'])
+    umidade = float(dados['humidity'])
     condicao_tempo = str(dados['description'])
-    velocidade_vento_km = complex(dados['wind_speedy'])
+    velocidade_vento_km = str(dados['wind_speedy'])
     data_hora = str(datetime.now())
     return Clima(temperatura=temperatura, umidade=umidade, condicao_tempo=condicao_tempo,
                  velocidade_vento_km=velocidade_vento_km, data_hora=data_hora)
@@ -46,7 +46,7 @@ def carregar_clima_hoje() -> Clima:
 
 
 def mostrar_menu():
-    print(f'Clima: {data_hora_hoje}')
+    print(f'Clima - {data_hora_hoje}')
     print(f'Temperatura: {clima_hoje.temperatura}')
     print(f'Umidade: {clima_hoje.umidade}')
     print(f'Condição do tempo: {clima_hoje.condicao_tempo}')

@@ -1,6 +1,6 @@
 class Clima:
 
-    def __init__(self, id: int = -1, temperatura: complex = 0.0, umidade: complex = 0.0, condicao_tempo: str = "", velocidade_vento_km: complex = 0.0, data_hora: str = "") -> None:
+    def __init__(self, id: int = -1, temperatura: float = 0.0, umidade: float = 0.0, condicao_tempo: str = "", velocidade_vento_km: str = "", data_hora: str = "") -> None:
         super().__init__()
         self.__id = id
         self.__temperatura = temperatura
