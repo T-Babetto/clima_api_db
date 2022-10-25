@@ -23,9 +23,15 @@ def consultar_dados_climaticos() -> Clima:
     umidade = float(dados['humidity'])
     condicao_tempo = str(dados['description'])
     velocidade_vento_km = str(dados['wind_speedy'])
+    noite_dia = str(dados['currently'])
+    nascer_do_sol = str(dados['sunrise'])
+    por_do_sol = str(dados['sunset'])
+    min_temperatura = float(dados['forecast']['min'])
+    max_temperatura = float(dados['forecast']['max'])
     data_hora = str(datetime.now())
+    media_temperatura = (min_temperatura + max_temperatura) / 10
     return Clima(temperatura=temperatura, umidade=umidade, condicao_tempo=condicao_tempo,
-                 velocidade_vento_km=velocidade_vento_km, data_hora=data_hora)
+                 velocidade_vento_km=velocidade_vento_km, noite_dia=noite_dia, nascer_do_sol=nascer_do_sol, por_do_sol=por_do_sol,media_temperatura=media_temperatura, data_hora=data_hora)
 
 
 def salvar_clima(clima) -> None:
@@ -48,18 +54,22 @@ def carregar_clima_hoje() -> Clima:
 def mostrar_menu():
     print(f'Clima - {data_hora_hoje}')
     print(f'Temperatura: {clima_hoje.temperatura}')
-    print(f'Umidade: {clima_hoje.umidade}')
     print(f'Condição do tempo: {clima_hoje.condicao_tempo}')
-    print(f'Vento: {clima_hoje.velocidade_vento_km}')
+    print(f'Período: {clima_hoje.noite_dia}')
+    print(f'Umidade: {clima_hoje.umidade}')
+    print(f'Velocidade do vento: {clima_hoje.velocidade_vento_km}')
+    print(f'Nascer do Sol: {clima_hoje.sunrise}')
+    print(f'Pôr do Sol: {clima_hoje.sunset}')
+    print(f'Média de temperaturas: {clima_hoje.media_temperatura}')
     print('Digite o UF do estado ou nome da cidade ou sair para SAIR:')
 
     resultado_clima = str(input('UF ou Cidade:'))
 
     if resultado_clima != 'sair':
-        print(f'\n {clima_hoje.temperatura}')
-        print(f'\n {clima_hoje.umidade}')
-        print(f'\n {clima_hoje.condicao_tempo}')
-        print(f'\n {clima_hoje.velocidade_vento_km}')
+        print(f'\n Temperatura: {clima_hoje.temperatura}')
+        print(f'\n Umidade {clima_hoje.umidade}')
+        print(f'\n Condição do tempo: {clima_hoje.condicao_tempo}')
+        print(f'\n Velocidade do vento: {clima_hoje.velocidade_vento_km}')
         print('\n')
         mostrar_menu()
     else:

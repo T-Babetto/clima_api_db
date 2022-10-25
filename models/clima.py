@@ -1,11 +1,20 @@
 class Clima:
 
-    def __init__(self, id: int = -1, temperatura: float = 0.0, umidade: float = 0.0, condicao_tempo: str = "", velocidade_vento_km: str = "", data_hora: str = "") -> None:
+    def __init__(self, id: int = -1, temperatura: float = 0.0, umidade: float = 0.0,
+                 condicao_tempo: str = "", noite_dia: str = "", nascer_do_sol: str = "",
+                 por_do_sol: str = "", min_temperatura: float = 0.0, max_temperatura: float = 0.0,
+                 velocidade_vento_km: str = "",
+                 data_hora: str = "") -> None:
         super().__init__()
         self.__id = id
         self.__temperatura = temperatura
         self.__umidade = umidade
         self.__condicao_tempo = condicao_tempo
+        self.__noite_dia = noite_dia
+        self.__nascer_do_sol = nascer_do_sol
+        self.__por_do_sol = por_do_sol
+        self.__min_temperatura = min_temperatura
+        self.__max_temperatura = max_temperatura
         self.__velocidade_vento_km = velocidade_vento_km
         self.__data_hora = data_hora
 
