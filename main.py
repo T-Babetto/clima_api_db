@@ -32,7 +32,8 @@ def consultar_dados_climaticos() -> Clima:
     media_temperatura = (min_temperatura + max_temperatura) / 10
     return Clima(temperatura=temperatura, umidade=umidade, condicao_tempo=condicao_tempo,
                  velocidade_vento_km=velocidade_vento_km, noite_dia=noite_dia, nascer_do_sol=nascer_do_sol,
-                 por_do_sol=por_do_sol, data_hora=data_hora)
+                 por_do_sol=por_do_sol, min_temperatura=min_temperatura, max_temperatura=max_temperatura,
+                 media_temperatura=media_temperatura, data_hora=data_hora)
 
 
 def salvar_clima(clima) -> None:
