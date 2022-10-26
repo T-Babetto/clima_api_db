@@ -26,12 +26,13 @@ def consultar_dados_climaticos() -> Clima:
     noite_dia = str(dados['currently'])
     nascer_do_sol = str(dados['sunrise'])
     por_do_sol = str(dados['sunset'])
-    min_temperatura = float(dados['forecast']['min'])
-    max_temperatura = float(dados['forecast']['max'])
+    min_temperatura = float(dados['forecast'][4]['min'])
+    max_temperatura = float(dados['forecast'][3]['max'])
     data_hora = str(datetime.now())
     media_temperatura = (min_temperatura + max_temperatura) / 10
     return Clima(temperatura=temperatura, umidade=umidade, condicao_tempo=condicao_tempo,
-                 velocidade_vento_km=velocidade_vento_km, noite_dia=noite_dia, nascer_do_sol=nascer_do_sol, por_do_sol=por_do_sol,media_temperatura=media_temperatura, data_hora=data_hora)
+                 velocidade_vento_km=velocidade_vento_km, noite_dia=noite_dia, nascer_do_sol=nascer_do_sol,
+                 por_do_sol=por_do_sol, data_hora=data_hora)
 
 
 def salvar_clima(clima) -> None:
@@ -48,7 +49,7 @@ def carregar_clima_hoje() -> Clima:
     else:
         registro_clima_hoje = climaDAO.buscar_clima_hoje()
         return Clima(registro_clima_hoje[0], registro_clima_hoje[1],
-                       registro_clima_hoje[2], registro_clima_hoje[3])
+                     registro_clima_hoje[2], registro_clima_hoje[3])
 
 
 def mostrar_menu():
@@ -58,8 +59,8 @@ def mostrar_menu():
     print(f'Período: {clima_hoje.noite_dia}')
     print(f'Umidade: {clima_hoje.umidade}')
     print(f'Velocidade do vento: {clima_hoje.velocidade_vento_km}')
-    print(f'Nascer do Sol: {clima_hoje.sunrise}')
-    print(f'Pôr do Sol: {clima_hoje.sunset}')
+    print(f'Nascer do Sol: {clima_hoje.nascer_do_sol}')
+    print(f'Pôr do Sol: {clima_hoje.por_do_sol}')
     print(f'Média de temperaturas: {clima_hoje.media_temperatura}')
     print('Digite o UF do estado ou nome da cidade ou sair para SAIR:')
 
